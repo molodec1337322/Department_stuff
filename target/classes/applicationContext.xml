@@ -8,12 +8,14 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="musicBean"
-          class="com.example.kursach2tkp.ClassicalMusic">
+          class="com.example.kursach2tkp.ClassicalMusic"
+            init-method="myInit"
+            destroy-method="myDestroy">
     </bean>
 
     <bean id="musicPlayer"
           class="com.example.kursach2tkp.MusicPlayer">
-        <constructor-arg ref="musicBean" />
+        <property name="music" ref="musicBean"/>
 
     </bean>
 
