@@ -1,4 +1,4 @@
-package com.example.kursach2tkp;
+package com.example.kursach2tkp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +8,11 @@ public class HomeController {
 
     @GetMapping("/hello")
     public String sayHello(){
-        return "HelloWorld";
+        return "home/HelloWorld";
+    }
+
+    @GetMapping("/goodbye")
+    public String sayGoodbye(){
+        return "home/GoodbyeWorld";
     }
 }
