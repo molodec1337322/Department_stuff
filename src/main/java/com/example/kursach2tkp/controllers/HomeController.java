@@ -14,7 +14,6 @@ public class HomeController {
     public String sayHello(@RequestParam(value = "name", required = false) String name,
                            Model model){
         model.addAttribute("message", "Hello, " + name);
-        System.out.println("Hello, " + name);
 
         return "home/HelloWorld";
     }
