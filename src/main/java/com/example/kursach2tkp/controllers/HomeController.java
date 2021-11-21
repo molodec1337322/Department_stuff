@@ -18,6 +18,13 @@ public class HomeController {
         return "home/HelloWorld";
     }
 
+    @GetMapping("/workers")
+    public String GetWorker(@RequestParam(value = "name", required = false) String name,
+                           Model model){
+
+        return "home/HelloWorld";
+    }
+
     @GetMapping("/goodbye")
     public String sayGoodbye(){
         return "home/GoodbyeWorld";
