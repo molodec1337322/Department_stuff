@@ -19,7 +19,12 @@ public class HomeController {
     }
 
     @GetMapping("/workers")
-    public String GetWorker(@RequestParam(value = "name", required = false) String name,
+    public String GetWorker(@RequestParam(value = "first_name", required = false) String first_name,
+                           @RequestParam(value = "second_name", required = false) String second_name,
+                           @RequestParam(value = "patronym", required = false) String patronym,
+                           @RequestParam(value = "birthday", required = false) String birthday,
+                           @RequestParam(value = "post", required = false) String post,
+                           @RequestParam(value = "started_working", required = false) String started_working,
                            Model model){
 
         return "home/Workers";
