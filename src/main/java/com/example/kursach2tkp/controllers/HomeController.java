@@ -22,7 +22,7 @@ public class HomeController {
     public String GetWorker(@RequestParam(value = "name", required = false) String name,
                            Model model){
 
-        return "home/HelloWorld";
+        return "home/Workers";
     }
 
     @GetMapping("/goodbye")
