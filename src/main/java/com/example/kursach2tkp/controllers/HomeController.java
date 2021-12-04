@@ -30,6 +30,11 @@ public class HomeController {
         return "home/Workers";
     }
 
+    @GetMapping("/addWorker")
+    public String GetWorker(){
+        return "home/addWorker";
+    }
+
     @GetMapping("/goodbye")
     public String sayGoodbye(){
         return "home/GoodbyeWorld";
