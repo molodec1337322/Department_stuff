@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en", xmlns:th="http://thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Р Р°Р±РѕС‚РЅРёРєРё</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
+    <title>Работники</title>
 </head>
 <body>
 
-<div th:each="Worker : ${workers}">
-    <a th:href="@{/workers/{id}(id=${Worker.getId()})}" th:text="${Worker.getFirst_name(), Worker.getLast_name(), Worker.getPatronym(), Worker.getPost()}">Worker</a>
+<div th:each="worker : ${workers}">
+    <a th:href="@{/workers/{id}(id=${worker.getId()})}" th:text="${worker.getFirst_name(), worker.getLast_name(), worker.getPatronym(), worker.getPost()}">VALUE</a>
 </div>
 
 </body>

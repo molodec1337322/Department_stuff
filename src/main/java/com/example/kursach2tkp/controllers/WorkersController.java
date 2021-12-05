@@ -22,13 +22,13 @@ public class WorkersController {
     @GetMapping()
     public String GetAllWorkers(Model model){
         model.addAttribute("workers", workerDAO.index());
-        return "workers/workersList";
+        return "workers/workersList.html";
     }
 
     @GetMapping("/{id}")
     public String GetWorkerByID(@PathVariable("id") int id, Model model){
         model.addAttribute("worker", workerDAO.getWorkerByID(id));
-        return "workers/worker";
+        return "workers/worker.html";
     }
 
     /*
