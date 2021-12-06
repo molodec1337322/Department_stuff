@@ -27,6 +27,7 @@ public class WorkersController {
 
     @GetMapping("/{id}")
     public String GetWorkerByID(@PathVariable("id") int id, Model model){
+        //model.addAttribute("worker", workerDAO.getWorkerByID(id));
         model.addAttribute("worker", workerDAO.getWorkerByID(id));
         return "workers/worker.html";
     }

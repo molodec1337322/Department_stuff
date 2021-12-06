@@ -1,13 +1,54 @@
 <!DOCTYPE html>
-<html lang="en", xmlns:th="http://thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
-    <title>Работники</title>
+    <title>Штатный состав кафедры</title>
 </head>
 <body>
 
+<div>
+    <form>
+        <p>Авторизация</p>
+        <p>логин</p>
+        <input/>
+        </br>
+        <p>пароль</p>
+        <input/>
+        <br>
+        <button>Войти</button>
+        <button>Регистрация</button>
+    </form>
+</div>
+
+<div>
+    <h2>Штатный состав кафедры</h2>
+</div>
+
+<div>
+    <form id="search">
+        <p>Поиск</p>
+        <input style="display: inline-block"/>
+        <button style="display: inline-block">Поиск</button>
+    </form>
+</div>
+
+<div>
+
+</div>
+
 <div th:each="worker : ${workers}">
-    <a th:href="@{/workers/{id}(id=${worker.getId()})}" th:text="${worker.getFirst_name(), worker.getLast_name(), worker.getPatronym(), worker.getPost()}">VALUE</a>
+    <div>
+        <form th:action="@{/workers/{id}(id=${worker.getId()})}">
+            <p style="display: inline-block" th:text="${worker.getFirst_name()}"></p>
+            <p style="display: inline-block" th:text="${worker.getLast_name()}"></p>
+            <p style="display: inline-block" th:text="${worker.getPatronym()}"></p>
+            <p style="display: inline-block" th:text="${worker.getPost()}"></p>
+            <button type="submit">Показать</button>
+        </form>
+    </div>
+    </br>
 </div>
 
 </body>

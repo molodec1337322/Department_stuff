@@ -16,7 +16,7 @@ public class WorkerDAO {
     {
         workers = new ArrayList<Worker>();
 
-        workers.add(new Worker(++WORKER_COUNT,
+        workers.add(new Worker(WORKER_COUNT++,
                 "Alex",
                 "Ivanov",
                 "Ivanovich",
@@ -24,7 +24,7 @@ public class WorkerDAO {
                 "admin",
                 "01.01.2020"));
 
-        workers.add(new Worker(++WORKER_COUNT,
+        workers.add(new Worker(WORKER_COUNT++,
                 "Ivan",
                 "Andrey",
                 "Andreevich",
@@ -32,7 +32,7 @@ public class WorkerDAO {
                 "CEO",
                 "01.01.2010"));
 
-        workers.add(new Worker(++WORKER_COUNT,
+        workers.add(new Worker(WORKER_COUNT++,
                 "Alex",
                 "Andrey",
                 "Andreevich",

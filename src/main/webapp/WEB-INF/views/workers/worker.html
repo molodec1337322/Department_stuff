@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en", xmlns:th="http://thymeleaf.org">
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
     <title>Работник</title>
 </head>
 <body>
-<p th:text="${worker.getFirst_name()}">VALUE</p>
+<p th:text="${worker.getFirst_name()}"></p>
 <p th:text="${worker.getLast_name()}">VALUE</p>
 <p th:text="${worker.getPatronym()}">VALUE</p>
 <p th:text="${worker.getBirthday()}">VALUE</p>
