@@ -10,6 +10,10 @@ public class Worker {
     private String post;
     private String started_working;
 
+    public Worker(){
+
+    }
+
     public Worker(int id,
                   String first_name,
                   String last_name,

@@ -35,7 +35,9 @@
 </div>
 
 <div>
-
+    <form th:action="@{/workers/new}">
+        <input type="submit" value="Добавить работника">
+    </form>
 </div>
 
 <div th:each="worker : ${workers}">

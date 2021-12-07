@@ -2,6 +2,7 @@ package com.example.kursach2tkp.dao;
 
 import com.example.kursach2tkp.Models.Worker;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,11 +42,31 @@ public class WorkerDAO {
                 "01.01.2016"));
     }
 
-    public List<Worker> index(){
+    public List<Worker> getAllWorkersList(){
         return workers;
+    }
+
+    /*
+    public boolean checkCollision(Worker worker){
+        for (Worker w: workers) {
+            if(worker.getFirst_name() == w.getFirst_name() &&
+            worker.getLast_name() == w.getLast_name() &&
+            worker.getPatronym() == w.getLast_name() )
+        }
+    }
+
+     */
+
+    public void addNewWorker(Worker worker){
+        worker.setId(WORKER_COUNT++);
+        workers.add(worker);
     }
 
     public Worker getWorkerByID(int id){
         return workers.stream().filter(worker -> worker.getId() == id).findAny().orElse(null);
+    }
+
+    public int getId(){
+        return WORKER_COUNT;
     }
 }
