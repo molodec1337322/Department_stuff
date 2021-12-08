@@ -1,15 +1,33 @@
-package com.example.kursach2tkp.Models;
+package com.example.kursach2tkp.models;
 
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "workers")
 public class Worker {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "first_name")
     private String first_name;
+
+    @Column(name = "last_name")
     private String last_name;
+
+    @Column(name = "patronym")
     private String patronym;
+
+    @Column(name = "birthday")
     private String birthday;
+
+    @Column(name = "post")
     private String post;
+
+    @Column(name = "started_working")
     private String started_working;
 
     public Worker(){

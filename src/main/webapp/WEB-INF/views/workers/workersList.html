@@ -3,27 +3,27 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
-    <title>Штатный состав кафедры</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>РЁС‚Р°С‚РЅС‹Р№ СЃРѕСЃС‚Р°РІ РєР°С„РµРґСЂС‹</title>
 </head>
 <body>
 
 <div>
-    <h2>Штатный состав кафедры</h2>
+    <h2>РЁС‚Р°С‚РЅС‹Р№ СЃРѕСЃС‚Р°РІ РєР°С„РµРґСЂС‹</h2>
 </div>
 
 <div>
     <form id="search">
-        <p>Поиск</p>
+        <p>РџРѕРёСЃРє</p>
         <input style="display: inline-block"/>
-        <button style="display: inline-block">Поиск</button>
+        <button style="display: inline-block">РџРѕРёСЃРє</button>
     </form>
 </div>
 
 <div>
     </br>
     <form th:action="@{/workers/new}">
-        <input type="submit" value="Добавить работника">
+        <input type="submit" value="Р”РѕР±Р°РІРёС‚СЊ СЂР°Р±РѕС‚РЅРёРєР°">
     </form>
 </div>
 
@@ -34,7 +34,7 @@
             <p style="display: inline-block" th:text="${worker.getLast_name()}"></p>
             <p style="display: inline-block" th:text="${worker.getPatronym()}"></p>
             <p style="display: inline-block" th:text="${worker.getPost()}"></p>
-            <button type="submit">Показать</button>
+            <button type="submit">РџРѕРєР°Р·Р°С‚СЊ</button>
         </form>
     </div>
     </br>

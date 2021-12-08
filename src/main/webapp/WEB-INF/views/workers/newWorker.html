@@ -3,54 +3,54 @@
       xmlns:th = "http://www.thymeleaf.org"
       xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
-    <title>Новый работник</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>РќРѕРІС‹Р№ СЂР°Р±РѕС‚РЅРёРє</title>
 </head>
 <body>
 
 <div>
-    <h2>Добавление нового работника в список работников</h2>
+    <h2>Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СЂР°Р±РѕС‚РЅРёРєР° РІ СЃРїРёСЃРѕРє СЂР°Р±РѕС‚РЅРёРєРѕРІ</h2>
 </div>
 
 <div>
     <form th:method="POST" th:action="@{/workers}" th:object="${worker}">
-        <label for="first_name">Имя</label>
+        <label for="first_name">РРјСЏ</label>
         <input name="first_name" type="text" id="first_name" />
 
         <br/>
         <br/>
 
-        <label for="last_name">Фамилия</label>
+        <label for="last_name">Р¤Р°РјРёР»РёСЏ</label>
         <input name="last_name" type="text" id="last_name"/>
 
         <br/>
         <br/>
 
-        <label for="patronym">Отчество</label>
+        <label for="patronym">РћС‚С‡РµСЃС‚РІРѕ</label>
         <input name="patronym" type="text" id="patronym"/>
 
         <br/>
         <br/>
 
-        <label for="post">Должность</label>
+        <label for="post">Р”РѕР»Р¶РЅРѕСЃС‚СЊ</label>
         <input name="post" type="text" id="post"/>
 
         <br/>
         <br/>
 
-        <label for="birthday">День рождения</label>
+        <label for="birthday">Р”РµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ</label>
         <input name="birthday" type="text" id="birthday"/>
 
         <br/>
         <br/>
 
-        <label for="started_working">Работает с</label>
+        <label for="started_working">Р Р°Р±РѕС‚Р°РµС‚ СЃ</label>
         <input name="started_working" type="text" id="started_working"/>
 
         <br/>
         <br/>
 
-        <input type="submit" value="Добавить работника">
+        <input type="submit" value="Р”РѕР±Р°РІРёС‚СЊ СЂР°Р±РѕС‚РЅРёРєР°">
 
     </form>
 </div>

@@ -1,13 +1,11 @@
 package com.example.kursach2tkp.controllers;
 
-import com.example.kursach2tkp.Models.Worker;
+import com.example.kursach2tkp.models.Worker;
 import com.example.kursach2tkp.dao.WorkerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/workers")
@@ -48,14 +46,14 @@ public class WorkersController {
                             @RequestParam("started_working") String started_working,
                             Model model){
 
-        Worker worker = new Worker(-1,
-                first_name,
-                last_name,
-                patronym,
-                birthday,
-                post,
-                started_working
-        );
+        Worker worker = new Worker();
+
+        worker.setFirst_name(first_name);
+        worker.setLast_name(last_name);
+        worker.setPatronym(patronym);
+        worker.setPost(post);
+        worker.setBirthday(birthday);
+        worker.setStarted_working(started_working);
 
         workerDAO.addNewWorker(worker);
 
