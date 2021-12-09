@@ -1,5 +1,6 @@
 package com.example.kursach2tkp.controllers;
 
+import com.example.kursach2tkp.dao.UserDAO;
 import com.example.kursach2tkp.models.User;
 import com.example.kursach2tkp.models.Worker;
 import com.example.kursach2tkp.dao.WorkerDAO;
@@ -17,9 +18,12 @@ public class WorkersController {
 
     private WorkerDAO workerDAO;
 
+    private UserDAO userDAO;
+
     @Autowired
-    public WorkersController(WorkerDAO workerDAO){
+    public WorkersController(WorkerDAO workerDAO, UserDAO userDAO){
         this.workerDAO = workerDAO;
+        this.userDAO = userDAO;
     }
 
     @GetMapping()
@@ -64,19 +68,22 @@ public class WorkersController {
 
         Worker worker = new Worker();
 
+        UserDetails principals = (UserDetails) authentication.getPrincipal();
+        User user = userDAO.getUserByLogin(principals.getUsername());
+
         worker.setFirst_name(first_name);
         worker.setLast_name(last_name);
         worker.setPatronym(patronym);
         worker.setPost(post);
         worker.setBirthday(birthday);
         worker.setStarted_working(started_working);
-        worker.setUser((User) authentication.getDetails());
+        worker.setUser(user);
 
         workerDAO.addNewWorker(worker);
 
         model.addAttribute("workers", workerDAO.getAllWorkersList());
 
-        return "workers/workersList";
+        return "redirect:/workers";
     }
 
 }
