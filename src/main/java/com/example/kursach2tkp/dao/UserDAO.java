@@ -26,4 +26,8 @@ public class UserDAO {
     public User getUserById(int id){
         return sessionFactory.getCurrentSession().get(User.class, id);
     }
+
+    public void createUser(User user){
+        sessionFactory.getCurrentSession().persist(user);
+    }
 }

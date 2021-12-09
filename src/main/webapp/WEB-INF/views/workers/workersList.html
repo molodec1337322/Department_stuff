@@ -8,12 +8,13 @@
 </head>
 <body>
 
-<div>
+
+<div th:if="@{}">
     <form th:action="@{/auth/login}">
         <input type="submit" value="Войти">
     </form>
 
-    <form th:action="@{/auth/register}">
+    <form th:action="@{/auth/registration}">
         <input type="submit" value="Зарегестрироваться">
     </form>
 </div>

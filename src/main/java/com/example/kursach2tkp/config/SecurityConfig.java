@@ -3,6 +3,7 @@ package com.example.kursach2tkp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,9 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        /*
         auth
                 .inMemoryAuthentication()
                 .withUser("user").password("user").roles("USER");
+
+         */
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
@@ -36,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/workers").permitAll()
+                .antMatchers("/auth/registration", "/auth/registration/*").not().fullyAuthenticated()
                 .anyRequest().authenticated()
                 .and()
 
@@ -43,22 +48,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем страницу с формой логина
                 .loginPage("/auth/login").defaultSuccessUrl("/workers")
                 // указываем action с формы логина
-                .loginProcessingUrl("/j_spring_security_check")
+                .loginProcessingUrl("/auth/login_processing")
                 // указываем URL при неудачном логине
                 .failureUrl("/auth/login?error")
                 // Указываем параметры логина и пароля с формы логина
                 .usernameParameter("login")
                 .passwordParameter("password")
                 // даем доступ к форме логина всем
-                .permitAll().and()
+                .permitAll()
+                .and()
 
                 .logout()
                 // разрешаем делать логаут всем
                 .permitAll()
                 // указываем URL логаута
-                .logoutUrl("/auth/logout")
-                // указываем URL при удачном логауте
-                .logoutSuccessUrl("/auth/login?logout")
+                .logoutSuccessUrl("/workers")
                 // делаем не валидной текущую сессию
                 .invalidateHttpSession(true);
     }
