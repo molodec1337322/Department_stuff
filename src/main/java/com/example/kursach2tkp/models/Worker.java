@@ -2,6 +2,7 @@ package com.example.kursach2tkp.models;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "workers")
@@ -34,20 +35,27 @@ public class Worker {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "worker")
+    private Set<WorkerSubjectID> workerSubjectID;
+
     public Worker(){
 
     }
 
     /*
-    Getters
+    Setters
      */
+
+    public void setWorkerSubjectID(Set<WorkerSubjectID> workerSubjectID) {
+        this.workerSubjectID = workerSubjectID;
+    }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setFirst_name(String first_name) {
@@ -75,15 +83,19 @@ public class Worker {
     }
 
     /*
-    Setters
+    Getters
      */
+
+    public Set<WorkerSubjectID> getWorkerSubjectID() {
+        return workerSubjectID;
+    }
 
     public int getId(){
         return id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public User getUser() {
+        return user;
     }
 
     public String getFirst_name() {
@@ -109,4 +121,5 @@ public class Worker {
     public String getStarted_working() {
         return started_working;
     }
+
 }

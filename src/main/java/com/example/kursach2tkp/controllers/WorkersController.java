@@ -31,14 +31,17 @@ public class WorkersController {
                                 Authentication authentication){
 
         boolean isAuthenticated = false;
+        String username = null;
 
         if(authentication != null){
             System.out.println((UserDetails)authentication.getPrincipal());
             isAuthenticated = authentication.isAuthenticated();
+            username = ((UserDetails) authentication.getPrincipal()).getUsername();
         }
 
         model.addAttribute("workers", workerDAO.getAllWorkersList());
         model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("logged_user", username);
 
         return "workers/workersList";
     }

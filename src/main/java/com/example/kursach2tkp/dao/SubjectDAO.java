@@ -1,6 +1,7 @@
 package com.example.kursach2tkp.dao;
 
-import com.example.kursach2tkp.models.User;
+
+import com.example.kursach2tkp.models.Subject;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.Locale;
 @Component
 @Repository
 @Transactional
-public class UserDAO {
+public class SubjectDAO {
 
     private SessionFactory sessionFactory;
 
@@ -21,15 +22,15 @@ public class UserDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public User getUserByLogin(String login){
-        return (User) sessionFactory.getCurrentSession().createQuery("from User where login='" + (String) login.toLowerCase(Locale.ROOT) + "'").uniqueResult();
+    public void createSubject(Subject subject){
+        sessionFactory.getCurrentSession().persist(subject);
     }
 
-    public User getUserById(int id){
-        return sessionFactory.getCurrentSession().get(User.class, id);
+    public Subject getSubjectById(int id){
+        return sessionFactory.getCurrentSession().get(Subject.class, id);
     }
 
-    public void createUser(User user){
-        sessionFactory.getCurrentSession().persist(user);
+    public Subject getSubjectByName(String name){
+        return (Subject) sessionFactory.getCurrentSession().createQuery("from User where name='" + (String) name.toLowerCase(Locale.ROOT) + "'");
     }
 }
