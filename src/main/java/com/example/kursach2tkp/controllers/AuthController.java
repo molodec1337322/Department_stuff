@@ -30,17 +30,10 @@ public class AuthController {
         return "auth/login";
     }
 
-    @GetMapping("/login_processing")
-    public void auth(@RequestParam(value = "login") String login,
-                       @RequestParam(value = "password") String password){
-        System.out.println(password);
-    }
-
     @GetMapping("/registration")
     public String registration(){
         return "auth/registration";
     }
-
 
     @PostMapping("/registration")
     public String addUser(@RequestParam(value = "login") String login,

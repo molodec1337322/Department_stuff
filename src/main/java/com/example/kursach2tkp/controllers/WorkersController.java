@@ -4,6 +4,8 @@ import com.example.kursach2tkp.models.Worker;
 import com.example.kursach2tkp.dao.WorkerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,12 @@ public class WorkersController {
     }
 
     @GetMapping()
-    public String GetAllWorkers(Model model){
+    public String GetAllWorkers(Model model,
+                                Authentication authentication){
+
+        if(authentication != null)
+            System.out.println((UserDetails)authentication.getPrincipal());
+
         model.addAttribute("workers", workerDAO.getAllWorkersList());
         return "workers/workersList";
     }

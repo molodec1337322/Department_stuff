@@ -41,18 +41,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException{
 
-        User user = userDAO.getUserByLogin(login.toLowerCase(Locale.ROOT));
-        UserBuilder builder = null;
-        if (user != null){
-
-            builder = org.springframework.security.core.userdetails.User.withUsername(login);
-            builder.disabled(!user.isEnabled());
-            builder.password(user.getPassword());
-            builder.roles(UserRoleEnum.USER.name());
-
-            return builder.build();
+        User myUser= userDAO.getUserByLogin(login);
+        if (myUser == null) {
+            throw new UsernameNotFoundException("Unknown user: " + login);
         }
-        throw new UsernameNotFoundException("UserNotFound");
+        UserDetails user = org.springframework.security.core.userdetails.User.builder()
+                .username(myUser.getLogin())
+                .password(myUser.getPassword())
+                .roles("USER")
+                .build();
+        return user;
     }
 
     public User findUserById(int id){
