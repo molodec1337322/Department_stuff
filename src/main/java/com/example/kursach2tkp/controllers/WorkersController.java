@@ -1,5 +1,6 @@
 package com.example.kursach2tkp.controllers;
 
+import com.example.kursach2tkp.models.User;
 import com.example.kursach2tkp.models.Worker;
 import com.example.kursach2tkp.dao.WorkerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,8 @@ public class WorkersController {
                             @RequestParam("post") String post,
                             @RequestParam("birthday") String birthday,
                             @RequestParam("started_working") String started_working,
-                            Model model){
+                            Model model,
+                            Authentication authentication){
 
         Worker worker = new Worker();
 
@@ -68,6 +70,7 @@ public class WorkersController {
         worker.setPost(post);
         worker.setBirthday(birthday);
         worker.setStarted_working(started_working);
+        worker.setUser((User) authentication.getDetails());
 
         workerDAO.addNewWorker(worker);
 

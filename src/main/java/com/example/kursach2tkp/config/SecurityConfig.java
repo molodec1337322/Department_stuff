@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .withUser("user").password(passwordEncoder().encode("user")).roles("USER");
-                
+
          */
 
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -39,8 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/workers").permitAll()
+                .antMatchers("/", "/workers", "/workers/*").permitAll()
                 .antMatchers("/auth/registration", "/auth/registration/*").not().fullyAuthenticated()
+                .antMatchers("/workers/new").fullyAuthenticated()
                 .anyRequest().authenticated()
                 .and()
 
@@ -60,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .logout()
+                .logoutUrl("/auth/logout")
                 // разрешаем делать логаут всем
                 .permitAll()
                 // указываем URL логаута

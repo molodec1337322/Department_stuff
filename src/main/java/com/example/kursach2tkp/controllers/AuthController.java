@@ -52,4 +52,9 @@ public class AuthController {
         }
         return "redirect:/workers";
     }
+
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/workers";
+    }
 }
