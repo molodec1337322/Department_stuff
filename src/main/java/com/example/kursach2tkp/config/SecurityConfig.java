@@ -3,7 +3,6 @@ package com.example.kursach2tkp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,12 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        /*
         auth
                 .inMemoryAuthentication()
-                .withUser("user").password("user").roles("USER");
+                .withUser("user").password(passwordEncoder().encode("user")).roles("USER");
 
-         */
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
@@ -46,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .formLogin()
                 // указываем страницу с формой логина
-                .loginPage("/auth/login").defaultSuccessUrl("/workers")
+                .loginPage("/auth/login")
+                .defaultSuccessUrl("/workers", true)
                 // указываем action с формы логина
                 .loginProcessingUrl("/auth/login_processing")
                 // указываем URL при неудачном логине

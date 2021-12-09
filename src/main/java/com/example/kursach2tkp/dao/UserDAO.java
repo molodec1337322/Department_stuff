@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Locale;
+
 @Component
 @Repository
 @Transactional
@@ -20,7 +22,8 @@ public class UserDAO {
     }
 
     public User getUserByLogin(String login){
-        return sessionFactory.getCurrentSession().get(User.class, login);
+
+        return (User) sessionFactory.getCurrentSession().createQuery("from User where login='" + (String) login.toLowerCase(Locale.ROOT) + "'").uniqueResult();
     }
 
     public User getUserById(int id){

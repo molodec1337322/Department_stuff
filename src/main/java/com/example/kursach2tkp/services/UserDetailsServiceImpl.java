@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 @Service("userDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService  {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserDAO userDAO;
-
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException{
 
-        User user = userDAO.getUserByLogin(login);
+        User user = userDAO.getUserByLogin(login.toLowerCase(Locale.ROOT));
         UserBuilder builder = null;
         if (user != null){
 
@@ -60,7 +60,7 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
     }
 
     public boolean saveUser(User user){
-        User userFromDB = userDAO.getUserByLogin(user.getLogin());
+        User userFromDB = userDAO.getUserByLogin(user.getLogin().toLowerCase(Locale.ROOT));
 
         if(userFromDB != null){
             return false;
