@@ -7,11 +7,19 @@
     <title>Работник</title>
 </head>
 <body>
-<p th:text="${worker.getFirst_name()}"></p>
-<p th:text="${worker.getLast_name()}">VALUE</p>
-<p th:text="${worker.getPatronym()}">VALUE</p>
-<p th:text="${worker.getBirthday()}">VALUE</p>
-<p th:text="${worker.getPost()}">VALUE</p>
-<p th:text="${worker.getStarted_working()}">VALUE</p>
+
+<div>
+    <h2>Информация</h2>
+</div>
+
+<div>
+    <p th:text="${worker.getFirst_name()}"></p>
+    <p th:text="${worker.getLast_name()}">VALUE</p>
+    <p th:text="${worker.getPatronym()}">VALUE</p>
+    <p th:text="${worker.getBirthday()}">VALUE</p>
+    <p th:text="${worker.getPost()}">VALUE</p>
+    <p th:text="${worker.getStarted_working()}">VALUE</p>
+</div>
+
 </body>
 </html>

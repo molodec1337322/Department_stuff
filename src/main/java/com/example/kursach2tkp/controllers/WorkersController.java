@@ -3,6 +3,7 @@ package com.example.kursach2tkp.controllers;
 import com.example.kursach2tkp.models.Worker;
 import com.example.kursach2tkp.dao.WorkerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,14 @@ public class WorkersController {
         return "workers/worker";
     }
 
+    @Secured(value={"USER", "SUPER_USER", "ADMIN"})
     @GetMapping("/new")
     public String NewWorker(Model model){
         model.addAttribute("worker", new Worker());
         return "workers/newWorker";
     }
 
+    @Secured(value={"USER", "SUPER_USER", "ADMIN"})
     @PostMapping()
     public String AddWorker(@RequestParam("first_name") String first_name,
                             @RequestParam("last_name") String last_name,

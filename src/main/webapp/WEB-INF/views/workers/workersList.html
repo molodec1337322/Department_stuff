@@ -9,6 +9,16 @@
 <body>
 
 <div>
+    <form th:action="@{/auth/login}">
+        <input type="submit" value="Войти">
+    </form>
+
+    <form th:action="@{/auth/register}">
+        <input type="submit" value="Зарегестрироваться">
+    </form>
+</div>
+
+<div>
     <h2>Штатный состав кафедры</h2>
 </div>
 

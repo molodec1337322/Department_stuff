@@ -1,20 +1,16 @@
 package com.example.kursach2tkp.dao;
 
-import com.example.kursach2tkp.models.Worker;
-import org.hibernate.Session;
+import com.example.kursach2tkp.models.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Component
 @Repository
 @Transactional
-public class WorkerDAO {
-
+public class UserDAO {
 
     private SessionFactory sessionFactory;
 
@@ -23,16 +19,11 @@ public class WorkerDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Worker> getAllWorkersList(){
-        return  sessionFactory.getCurrentSession().createQuery("from Worker").list();
+    public User getUserByLogin(String login){
+        return sessionFactory.getCurrentSession().get(User.class, login);
     }
 
-    public void addNewWorker(Worker worker){
-        sessionFactory.getCurrentSession().persist(worker);
-    }
-
-    public Worker getWorkerByID(int id){
-        return  sessionFactory.getCurrentSession().get(Worker.class, id);
+    public User getUserById(int id){
+        return sessionFactory.getCurrentSession().get(User.class, id);
     }
 }
