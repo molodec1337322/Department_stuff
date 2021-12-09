@@ -20,6 +20,11 @@ public class AuthController {
         return "auth/login";
     }
 
+    @PostMapping("/login?error")
+    public String loginError(){
+        return "auth/login";
+    }
+
     @GetMapping("/register")
     public String register(){
         return "auth/register";

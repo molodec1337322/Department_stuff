@@ -32,14 +32,12 @@ public class WorkersController {
         return "workers/worker";
     }
 
-    @Secured(value={"USER", "SUPER_USER", "ADMIN"})
     @GetMapping("/new")
     public String NewWorker(Model model){
         model.addAttribute("worker", new Worker());
         return "workers/newWorker";
     }
 
-    @Secured(value={"USER", "SUPER_USER", "ADMIN"})
     @PostMapping()
     public String AddWorker(@RequestParam("first_name") String first_name,
                             @RequestParam("last_name") String last_name,
