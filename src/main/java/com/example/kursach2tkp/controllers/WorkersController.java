@@ -25,10 +25,16 @@ public class WorkersController {
     public String GetAllWorkers(Model model,
                                 Authentication authentication){
 
-        if(authentication != null)
+        boolean isAuthenticated = false;
+
+        if(authentication != null){
             System.out.println((UserDetails)authentication.getPrincipal());
+            isAuthenticated = authentication.isAuthenticated();
+        }
 
         model.addAttribute("workers", workerDAO.getAllWorkersList());
+        model.addAttribute("is_auth", isAuthenticated);
+
         return "workers/workersList";
     }
 
