@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Locale;
 
 @Component
@@ -32,5 +33,10 @@ public class SubjectDAO {
 
     public Subject getSubjectByName(String name){
         return (Subject) sessionFactory.getCurrentSession().createQuery("from User where name='" + (String) name.toLowerCase(Locale.ROOT) + "'");
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Subject> getAllSubjectsList(){
+        return sessionFactory.getCurrentSession().createQuery("from Subject").list();
     }
 }
