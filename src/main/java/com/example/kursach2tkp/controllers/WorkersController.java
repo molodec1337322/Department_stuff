@@ -43,7 +43,7 @@ public class WorkersController {
         model.addAttribute("is_auth", isAuthenticated);
         model.addAttribute("logged_user", username);
 
-        return "workers/workersList";
+        return "workers/test/index";
     }
 
     @GetMapping("/{id}")
