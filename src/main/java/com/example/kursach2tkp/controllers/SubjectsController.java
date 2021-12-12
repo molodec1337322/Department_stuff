@@ -44,7 +44,7 @@ public class SubjectsController {
         model.addAttribute("logged_user", username);
         model.addAttribute("subjects", subjectDAO.getAllSubjectsList());
 
-        return "/subjects/subjectsList";
+        return "/subjects/subjectsList/index";
     }
 
     @PostMapping("/new")

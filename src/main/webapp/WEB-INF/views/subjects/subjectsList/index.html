@@ -7,11 +7,11 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Работники кафедры</title>
-    <link rel="stylesheet" href="../resources/workersList/css/nicepage.css" th:href="@{/resources/workersList/css/nicepage.css}">
-<link rel="stylesheet" href="../resources/workersList/css/Работники-кафедры.css" th:href="@{/resources/workersList/css/Работники-кафедры.css}">
-    <script class="u-script" type="text/javascript" th:src="@{/resources/workersList/js/jquery.js}" defer=""></script>
-    <script class="u-script" type="text/javascript" th:src="@{/resources/workersList/js/nicepage.js}" defer=""></script>
+    <title>Список кафедр</title>
+    <link rel="stylesheet" href="../resources/subjectsList/css/nicepage.css" th:href="@{/resources/subjectsList/css/nicepage.css}">
+<link rel="stylesheet" href="../resources/subjectsList/css/Работники-кафедры.css" th:href="@{/resources/subjectsList/css/Работники-кафедры.css}">
+    <script class="u-script" type="text/javascript" th:src="@{/resources/subjectsList/js/jquery.js}" defer=""></script>
+    <script class="u-script" type="text/javascript" th:src="@{/resources/subjectsList/js/nicepage.js}" defer=""></script>
     <meta name="generator" content="Nicepage 4.1.0, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     
@@ -57,7 +57,7 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-        <h3 class="u-text u-text-default u-text-1">Штатный состав кафедры</h3>
+        <h3 class="u-text u-text-default u-text-1">Кафедры</h3>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-2">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -92,19 +92,19 @@
             <div class="u-layout-row">
               <div class="u-container-style u-layout-cell u-size-42 u-layout-cell-1">
                 <div class="u-container-layout u-container-layout-1">
-                    <div th:each="worker : ${workers}">
+                    <div th:each="subject : ${subjects}">
                       <div class="u-container-style u-grey-5 u-group u-group-1">
                         <div class="u-container-layout u-container-layout-2">
-                          <a href="" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1">Подробнее</a>
-                          <p th:text="${worker.getFirst_name() + ' ' + worker.getLast_name() + ' ' + worker.getPatronym() + ' ' + worker.getPost()}" class="u-text u-text-1"></p>
+                          <a href=""  class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-1">Подробнее</a>
+                          <p th:text="${subject.getName()}" class="u-text u-text-1"></p>
                         </div>
                       </div>
-                    </div>
+                  </div>
                 </div>
               </div>
               <div class="u-container-style u-layout-cell u-size-18 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-3" th:if="${is_auth}">
-                  <a href="/workers/new" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-2">Добавить работника кафедры</a>
+                  <a href="https://nicepage.com/joomla-templates" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-2">Добавить кафедру</a>
                 </div>
               </div>
             </div>

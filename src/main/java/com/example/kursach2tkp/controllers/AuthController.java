@@ -50,11 +50,11 @@ public class AuthController {
         if(!userDetailsService.saveUser(newUser)){
             return "redirect:/auth/registration?collision_error";
         }
-        return "redirect:/workers";
+        return "redirect:/subjects";
     }
 
     @GetMapping("/logout")
     public String logout(){
-        return "redirect:/workers";
+        return "redirect:/subjects";
     }
 }

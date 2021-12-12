@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 // указываем страницу с формой логина
                 .loginPage("/auth/login")
-                .defaultSuccessUrl("/workers", true)
+                .defaultSuccessUrl("/subjects", true)
                 // указываем action с формы логина
                 .loginProcessingUrl("/auth/login_processing")
                 // указываем URL при неудачном логине
@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // разрешаем делать логаут всем
                 .permitAll()
                 // указываем URL логаута
-                .logoutSuccessUrl("/workers")
+                .logoutSuccessUrl("/subjects")
                 // делаем не валидной текущую сессию
                 .invalidateHttpSession(true);
     }
