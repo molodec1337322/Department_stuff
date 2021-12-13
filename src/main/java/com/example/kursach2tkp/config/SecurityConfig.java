@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/workers", "/workers/*", "/subjects").permitAll()
-                .antMatchers("/auth/registration", "/auth/registration/*").not().fullyAuthenticated()
+                .antMatchers("/auth/registration", "/auth/registration/*", "/auth/login", "/auth/login/*").not().fullyAuthenticated()
                 .antMatchers("/workers/new", "/subjects/new").fullyAuthenticated()
                 .anyRequest().authenticated()
                 .and()
@@ -65,16 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("login")
                 .passwordParameter("password")
                 // даем доступ к форме логина всем
-                .permitAll()
-                .and()
-
-                .logout()
-                .logoutUrl("/auth/logout")
-                // разрешаем делать логаут всем
-                .permitAll()
-                // указываем URL логаута
-                .logoutSuccessUrl("/subjects")
-                // делаем не валидной текущую сессию
-                .invalidateHttpSession(true);
+                .permitAll();
     }
 }

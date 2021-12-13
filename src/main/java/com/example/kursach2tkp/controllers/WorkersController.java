@@ -43,7 +43,7 @@ public class WorkersController {
         model.addAttribute("is_auth", isAuthenticated);
         model.addAttribute("logged_user", username);
 
-        return "workers/workersList/index";
+        return "workers/workersList/Работники-кафедры";
     }
 
     @GetMapping("/{id}")
@@ -56,7 +56,7 @@ public class WorkersController {
     @GetMapping("/new")
     public String NewWorker(Model model){
         model.addAttribute("worker", new Worker());
-        return "workers/newWorker";
+        return "workers/Добавление-нового-работника";
     }
 
     @PostMapping()
