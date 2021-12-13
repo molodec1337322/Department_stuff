@@ -16,7 +16,7 @@ public class Subject {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
-    private Set<WorkerSubjectID> workerSubjectID;
+    private Set<Worker> workers;
 
     public Subject(){
 
@@ -34,8 +34,8 @@ public class Subject {
         return name;
     }
 
-    public Set<WorkerSubjectID> getWorkerSubjectID() {
-        return workerSubjectID;
+    public Set<Worker> getWorker() {
+        return workers;
     }
 
     /*
@@ -50,7 +50,7 @@ public class Subject {
         this.name = name;
     }
 
-    public void setWorkerSubjectID(Set<WorkerSubjectID> workerSubjectID) {
-        this.workerSubjectID = workerSubjectID;
+    public void setWorker(Set<Worker> worker) {
+        this.workers = worker;
     }
 }

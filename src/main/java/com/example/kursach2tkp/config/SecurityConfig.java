@@ -45,10 +45,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/", "/workers", "/workers/*", "/subjects").permitAll()
-                .antMatchers("/auth/registration", "/auth/registration/*", "/auth/login", "/auth/login/*").not().fullyAuthenticated()
+                .antMatchers("/", "/workers", "/workers/**", "/subjects/**").permitAll()
+                .antMatchers("/auth/registration", "/auth/registration/**", "/auth/login", "/auth/login/**").not().fullyAuthenticated()
                 .antMatchers("/workers/new", "/subjects/new").fullyAuthenticated()
                 .anyRequest().authenticated()
                 .and()

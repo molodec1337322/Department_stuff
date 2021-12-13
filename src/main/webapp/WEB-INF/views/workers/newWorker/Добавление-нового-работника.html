@@ -25,37 +25,37 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body"><header class="u-clearfix u-grey-80 u-header u-header" id="sec-0ecb"><div class="u-clearfix u-sheet u-sheet-1">
-        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse">
-            <a class="u-button-style u-nav-link" href="#">
-              <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</symbol>
-</defs></svg>
-            </a>
+              <a class="u-button-style u-nav-link" href="#">
+                  <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+                  </symbol>
+                  </defs></svg>
+              </a>
           </div>
-            <div class="u-custom-menu u-nav-container" th:if="${!is_auth}">
-                <ul class="u-nav u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/auth/login}">Войти</a>
-                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/auth/registration}">Зарегистрироваться</a>
-                </li></ul>
-            </div>
-            <div class="u-custom-menu u-nav-container" th:if="${is_auth}">
-                <ul class="u-nav u-unstyled"><li class="u-nav-item"><label style="display: inline;" class="u-button-style u-nav-link" th:text="${logged_user}"></label>
-                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/auth/logout}">Выйти</a>
-                </li></ul>
-            </div>
+          <div class="u-custom-menu u-nav-container" th:if="${!is_auth}">
+              <ul class="u-nav u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/auth/login}">Войти</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/auth/registration}">Зарегистрироваться</a>
+              </li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container" th:if="${is_auth}">
+              <ul class="u-nav u-unstyled"><li class="u-nav-item"><label style="display: inline;" class="u-button-style u-nav-link" th:text="${logged_user}"></label>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/auth/logout}">Выйти</a>
+              </li></ul>
+          </div>
           <div class="u-custom-menu u-nav-container-collapse">
-            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-              <div class="u-inner-container-layout u-sidenav-overflow">
-                <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Войти.html">Войти</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Зарегистрироваться.html">Зарегистрироваться</a>
-</li></ul>
+              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                  <div class="u-inner-container-layout u-sidenav-overflow">
+                      <div class="u-menu-close"></div>
+                      <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Войти.html">Войти</a>
+                      </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Зарегистрироваться.html">Зарегистрироваться</a>
+                      </li></ul>
+                  </div>
               </div>
-            </div>
-            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
-        </nav>
+      </nav>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-2">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -67,7 +67,8 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" th:href="@{/subjects}" style="padding: 10px 20px;">Список кафедр</a>
-</li></ul>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" th:href="@{/workers/all}" style="padding: 10px 20px;">Список работников кафедр</a>
+            </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -85,30 +86,30 @@
     <section class="u-clearfix u-section-1" id="sec-faf5">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-form-1">
-          <form action="#" method="POST" class="" source="custom" name="form" style="padding: 10px;">
+          <form action="/workers/new" method="POST" class="" source="custom" name="form" style="padding: 10px;">
             <input type="hidden" id="siteId" name="siteId" value="118690144">
             <input type="hidden" id="pageId" name="pageId" value="1446601463">
             <div class="u-form-group u-form-name">
               <label for="name-3de0" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Имя " id="name-3de0" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+              <input type="text" placeholder="Имя " id="name-3de0" name="first_name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
-            <div class="u-form-email u-form-group">
+            <div style="margin-top: 10px;" class="u-form-group u-form-group">
               <label for="email-3de0" class="u-form-control-hidden u-label"></label>
-              <input type="email" placeholder="Фамилия" id="email-3de0" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+              <input type="text" placeholder="Фамилия" id="email-3de0" name="last_name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
-            <div class="u-form-group u-form-group-3">
+            <div style="margin-top: 10px;" class="u-form-group u-form-group-3">
               <label for="text-85ef" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Отчество" id="text-85ef" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+              <input type="text" placeholder="Отчество" id="text-85ef" name="patronym" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
-            <div class="u-form-group u-form-group-4">
+            <div style="margin-top: 10px;" class="u-form-group u-form-group-4">
               <label for="text-f921" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Дата рождения" id="text-f921" name="text-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+              <input type="date" placeholder="Дата рождения" id="text-f921" name="birthday" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
-            <div class="u-form-group u-form-group-5">
+            <div style="margin-top: 10px;" class="u-form-group u-form-group-5">
               <label for="text-6a90" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Должность" id="text-6a90" name="text-2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+              <input type="text" placeholder="Должность" id="text-6a90" name="post" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
-            <div class="u-form-group u-form-select u-form-group-6">
+            <div style="margin-top: 10px;" class="u-form-group u-form-select u-form-group-6">
               <label for="select-154e" class="u-form-control-hidden u-label"></label>
               <div class="u-form-select-wrapper">
                 <select id="select-154e" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
@@ -123,9 +124,6 @@
               <a href="#" class="u-btn u-btn-submit u-button-style">Создать</a>
               <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
-            <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
-            <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и попробуйте еще раз. </div>
-            <input type="hidden" value="" name="recaptchaResponse">
           </form>
         </div>
       </div>

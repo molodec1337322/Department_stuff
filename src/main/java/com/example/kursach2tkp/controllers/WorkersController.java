@@ -1,5 +1,6 @@
 package com.example.kursach2tkp.controllers;
 
+import com.example.kursach2tkp.dao.SubjectDAO;
 import com.example.kursach2tkp.dao.UserDAO;
 import com.example.kursach2tkp.models.User;
 import com.example.kursach2tkp.models.Worker;
@@ -20,13 +21,17 @@ public class WorkersController {
 
     private UserDAO userDAO;
 
+    private SubjectDAO subjectDAO;
+
     @Autowired
-    public WorkersController(WorkerDAO workerDAO, UserDAO userDAO){
+    public WorkersController(WorkerDAO workerDAO, UserDAO userDAO, SubjectDAO subjectDAO){
         this.workerDAO = workerDAO;
         this.userDAO = userDAO;
+        this.subjectDAO = subjectDAO;
     }
 
-    @GetMapping()
+
+    @GetMapping("/all")
     public String GetAllWorkers(Model model,
                                 Authentication authentication){
 
@@ -46,26 +51,63 @@ public class WorkersController {
         return "workers/workersList/Работники-кафедры";
     }
 
-    @GetMapping("/{id}")
+
+    @GetMapping("/info/{id}")
     public String GetWorkerByID(@PathVariable("id") int id, Model model){
         //model.addAttribute("worker", workerDAO.getWorkerByID(id));
         model.addAttribute("worker", workerDAO.getWorkerByID(id));
         return "workers/worker";
     }
 
-    @GetMapping("/new")
-    public String NewWorker(Model model){
-        model.addAttribute("worker", new Worker());
-        return "workers/Добавление-нового-работника";
+    @GetMapping("/subject/{id}")
+    public String GetAllWorkersBySubject(@PathVariable("id") int subject,
+                                            Model model,
+                                            Authentication authentication){
+
+        boolean isAuthenticated = false;
+        String username = null;
+
+        if(authentication != null){
+            System.out.println((UserDetails)authentication.getPrincipal());
+            isAuthenticated = authentication.isAuthenticated();
+            username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        }
+
+        //int subjectID = subjectDAO.getSubjectByName(subject).getId();
+
+        model.addAttribute("workers", workerDAO.getWorkersBySubjectID(subject));
+        model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("logged_user", username);
+        model.addAttribute("subject_name", subject);
+
+        return "workers/workersList/Работники-кафедры";
     }
 
-    @PostMapping()
+    @GetMapping("/new")
+    public String NewWorker(Model model,
+                            Authentication authentication){
+
+        boolean isAuthenticated = false;
+        String username = null;
+
+        if(authentication != null){
+            System.out.println((UserDetails)authentication.getPrincipal());
+            isAuthenticated = authentication.isAuthenticated();
+            username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        }
+
+        model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("logged_user", username);
+
+        return "workers/newWorker/Добавление-нового-работника";
+    }
+
+    @PostMapping("/new")
     public String AddWorker(@RequestParam("first_name") String first_name,
                             @RequestParam("last_name") String last_name,
                             @RequestParam("patronym") String patronym,
                             @RequestParam("post") String post,
                             @RequestParam("birthday") String birthday,
-                            @RequestParam("started_working") String started_working,
                             Model model,
                             Authentication authentication){
 
@@ -79,14 +121,14 @@ public class WorkersController {
         worker.setPatronym(patronym);
         worker.setPost(post);
         worker.setBirthday(birthday);
-        worker.setStarted_working(started_working);
         worker.setUser(user);
+        worker.setSubject(subjectDAO.getSubjectById(6));
 
         workerDAO.addNewWorker(worker);
 
         model.addAttribute("workers", workerDAO.getAllWorkersList());
 
-        return "redirect:/workers";
+        return "redirect:/workers/all";
     }
 
 }

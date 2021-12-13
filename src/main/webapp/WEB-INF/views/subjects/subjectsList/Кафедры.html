@@ -67,7 +67,9 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" th:href="@{/subjects}" style="padding: 10px 20px;">Список кафедр</a>
-</li></ul>
+</li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" th:href="@{/workers/all}" style="padding: 10px 20px;">Список работников кафедр</a>
+                </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -91,7 +93,7 @@
                   <div th:each="subject : ${subjects}">
                     <div style="margin-top: 10px" class="u-container-style u-grey-15 u-group u-shape-rectangle u-group-1">
                       <div class="u-container-layout u-container-layout-2">
-                        <a href="https://nicepage.com/c/food-restaurant-website-templates" class="u-border-none u-btn u-button-style u-palette-1-base u-btn-1">Подробнее</a>
+                        <a th:href="${'/workers/subject/' + subject.getId()}" class="u-border-none u-btn u-button-style u-palette-1-base u-btn-1">Подробнее</a>
                         <p class="u-text u-text-1" th:text="${subject.getName()}"></p>
                       </div>
                     </div>
@@ -100,16 +102,15 @@
             </div>
             <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-2">
               <div class="u-container-layout u-container-layout-3" th:if="${is_auth}">
-                  <form action="#" method="POST" class="" source="custom" name="form" style="padding: 10px;">
+                  <form action="/subjects/new" method="POST" class="" source="custom" name="form" style="padding: 10px;">
                       <input type="hidden" id="siteId" name="siteId" value="118690144">
                       <input type="hidden" id="pageId" name="pageId" value="239119998">
                       <div class="u-form-group u-form-name">
                           <label for="name-85db" class="u-form-control-hidden u-label"></label>
-                          <input type="text" placeholder="Введите название новой кафедры" id="name-85db" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                          <input type="text" placeholder="Введите название новой кафедры" id="name-85db" name="newSubjectName" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                       </div>
                       <div class="u-align-center u-form-group u-form-submit">
-                          <a href="#" class="u-btn u-btn-submit u-button-style">Создать новую кафедру</a>
-                          <input type="submit" value="submit" class="u-form-control-hidden">
+                          <input type="submit" value="Создать новую кафедру" class="u-btn u-btn-submit u-button-style">
                       </div>
                   </form>
               </div>

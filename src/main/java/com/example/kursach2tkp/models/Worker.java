@@ -28,15 +28,13 @@ public class Worker {
     @Column(name = "post")
     private String post;
 
-    @Column(name = "started_working", nullable = false)
-    private String started_working;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "worker")
-    private Set<WorkerSubjectID> workerSubjectID;
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
     public Worker(){
 
@@ -46,8 +44,8 @@ public class Worker {
     Setters
      */
 
-    public void setWorkerSubjectID(Set<WorkerSubjectID> workerSubjectID) {
-        this.workerSubjectID = workerSubjectID;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public void setId(int id) {
@@ -78,16 +76,12 @@ public class Worker {
         this.post = post;
     }
 
-    public void setStarted_working(String started_working) {
-        this.started_working = started_working;
-    }
-
     /*
     Getters
      */
 
-    public Set<WorkerSubjectID> getWorkerSubjectID() {
-        return workerSubjectID;
+    public Subject getSubject() {
+        return subject;
     }
 
     public int getId(){
@@ -116,10 +110,6 @@ public class Worker {
 
     public String getPost() {
         return post;
-    }
-
-    public String getStarted_working() {
-        return started_working;
     }
 
 }

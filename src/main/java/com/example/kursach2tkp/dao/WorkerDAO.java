@@ -1,5 +1,6 @@
 package com.example.kursach2tkp.dao;
 
+import com.example.kursach2tkp.models.Subject;
 import com.example.kursach2tkp.models.Worker;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 
 @Component
 @Repository
@@ -34,5 +36,10 @@ public class WorkerDAO {
 
     public Worker getWorkerByID(int id){
         return  sessionFactory.getCurrentSession().get(Worker.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Worker> getWorkersBySubjectID(int subjectID){
+        return sessionFactory.getCurrentSession().createQuery("from Worker where subject_id=" + subjectID).list();
     }
 }
