@@ -25,6 +25,9 @@ public class User {
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
+    @Column(name = "role", nullable = false)
+    private String role;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Worker> workers = new HashSet<>();
 
@@ -60,6 +63,10 @@ public class User {
         return workers;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     /*
     SETTERS
      */
@@ -86,5 +93,9 @@ public class User {
 
     public void setWorkers(Set<Worker> workers) {
         this.workers = workers;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

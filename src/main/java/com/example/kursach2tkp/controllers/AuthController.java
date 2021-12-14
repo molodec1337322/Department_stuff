@@ -50,6 +50,7 @@ public class AuthController {
         newUser.setLogin(login.toLowerCase(Locale.ROOT));
         newUser.setPassword(password);
         newUser.setEmail(email.toLowerCase(Locale.ROOT));
+        newUser.setRole("USER");
 
         if(!userDetailsService.saveUser(newUser)){
             return "redirect:/auth/registration?collision_error";

@@ -66,6 +66,7 @@ public class WorkersController {
 
         boolean isAuthenticated = false;
         String username = null;
+        String role = null;
 
         if(authentication != null){
             System.out.println((UserDetails)authentication.getPrincipal());
