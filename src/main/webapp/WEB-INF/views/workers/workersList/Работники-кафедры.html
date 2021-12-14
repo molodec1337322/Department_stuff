@@ -92,7 +92,7 @@
                   <div th:each="worker : ${workers}">
                     <div style="margin-top: 10px" class="u-container-style u-grey-15 u-group u-group-1">
                       <div class="u-container-layout u-container-layout-2">
-                          <a href="@{'/workers/info/' + worker.getId()}" class="u-btn u-button-style u-btn-1">Удалить</a>
+                          <a href="@{'/workers/delete/' + worker.getId()}" class="u-btn u-button-style u-btn-1" th:if="@{is_admin}"}>Удалить</a>
                         <a href="@{'/workers/info/' + worker.getId()}" class="u-btn u-button-style u-btn-1">Подробнее</a>
                         <p class="u-text u-text-1" th:text="${worker.getFirst_name() + ' ' + worker.getLast_name() + ' ' + worker.getPatronym() + ' ' + worker.getPost()}"></p>
                       </div>

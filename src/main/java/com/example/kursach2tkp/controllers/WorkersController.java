@@ -36,6 +36,7 @@ public class WorkersController {
                                 Authentication authentication){
 
         boolean isAuthenticated = false;
+        boolean isAdmin = false;
         String username = null;
 
         if(authentication != null){
@@ -46,6 +47,7 @@ public class WorkersController {
 
         model.addAttribute("workers", workerDAO.getAllWorkersList());
         model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("is_admin", isAdmin);
         model.addAttribute("logged_user", username);
 
         return "workers/workersList/Работники-кафедры";
@@ -65,19 +67,22 @@ public class WorkersController {
                                             Authentication authentication){
 
         boolean isAuthenticated = false;
+        boolean isAdmin = false;
         String username = null;
-        String role = null;
+
 
         if(authentication != null){
             System.out.println((UserDetails)authentication.getPrincipal());
             isAuthenticated = authentication.isAuthenticated();
             username = ((UserDetails) authentication.getPrincipal()).getUsername();
+
         }
 
         //int subjectID = subjectDAO.getSubjectByName(subject).getId();
 
         model.addAttribute("workers", workerDAO.getWorkersBySubjectID(subject));
         model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("is_admin", isAdmin);
         model.addAttribute("logged_user", username);
         model.addAttribute("subject_name", subject);
 
@@ -128,6 +133,15 @@ public class WorkersController {
         workerDAO.addNewWorker(worker);
 
         model.addAttribute("workers", workerDAO.getAllWorkersList());
+
+        return "redirect:/workers/all";
+    }
+
+    public String deleteWorker(@PathVariable("id") int id,
+                               Model model,
+                               Authentication authentication){
+
+        workerDAO.deleteWorkerById(id);
 
         return "redirect:/workers/all";
     }

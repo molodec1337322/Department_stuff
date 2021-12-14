@@ -39,7 +39,11 @@ public class WorkerDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Worker> getWorkersBySubjectID(int subjectID){
-        return sessionFactory.getCurrentSession().createQuery("from Worker where subject_id=" + subjectID).list();
+    public List<Worker> getWorkersBySubjectID(int id){
+        return sessionFactory.getCurrentSession().createQuery("from Worker where subject_id=" + id).list();
+    }
+
+    public void deleteWorkerById(int id){
+        sessionFactory.getCurrentSession().delete(getWorkerByID(id));
     }
 }
