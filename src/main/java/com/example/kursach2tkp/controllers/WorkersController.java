@@ -102,6 +102,7 @@ public class WorkersController {
             username = ((UserDetails) authentication.getPrincipal()).getUsername();
         }
 
+        model.addAttribute("subjectsList", subjectDAO.getAllSubjectsList());
         model.addAttribute("is_auth", isAuthenticated);
         model.addAttribute("logged_user", username);
 
