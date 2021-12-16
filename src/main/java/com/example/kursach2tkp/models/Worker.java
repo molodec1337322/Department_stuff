@@ -25,8 +25,11 @@ public class Worker {
     @Column(name = "birthday", nullable = false)
     private String birthday;
 
+    /*
     @Column(name = "post")
     private String post;
+
+     */
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -35,6 +38,10 @@ public class Worker {
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     public Worker(){
 
@@ -72,9 +79,16 @@ public class Worker {
         this.birthday = birthday;
     }
 
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    /*
     public void setPost(String post) {
         this.post = post;
     }
+
+     */
 
     /*
     Getters
@@ -108,8 +122,15 @@ public class Worker {
         return birthday;
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    /*
     public String getPost() {
         return post;
     }
+
+     */
 
 }

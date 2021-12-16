@@ -1,7 +1,10 @@
 package com.example.kursach2tkp.controllers;
 
+import com.example.kursach2tkp.dao.PostDAO;
 import com.example.kursach2tkp.dao.SubjectDAO;
 import com.example.kursach2tkp.dao.UserDAO;
+import com.example.kursach2tkp.models.Post;
+import com.example.kursach2tkp.models.Subject;
 import com.example.kursach2tkp.models.User;
 import com.example.kursach2tkp.models.Worker;
 import com.example.kursach2tkp.dao.WorkerDAO;
@@ -23,11 +26,14 @@ public class WorkersController {
 
     private SubjectDAO subjectDAO;
 
+    private PostDAO postDAO;
+
     @Autowired
-    public WorkersController(WorkerDAO workerDAO, UserDAO userDAO, SubjectDAO subjectDAO){
+    public WorkersController(WorkerDAO workerDAO, UserDAO userDAO, SubjectDAO subjectDAO, PostDAO postDAO){
         this.workerDAO = workerDAO;
         this.userDAO = userDAO;
         this.subjectDAO = subjectDAO;
+        this.postDAO = postDAO;
     }
 
 
@@ -113,7 +119,8 @@ public class WorkersController {
     public String AddWorker(@RequestParam("first_name") String first_name,
                             @RequestParam("last_name") String last_name,
                             @RequestParam("patronym") String patronym,
-                            @RequestParam("post") String post,
+                            @RequestParam("post") int post_id,
+                            @RequestParam("subject") int subject_id,
                             @RequestParam("birthday") String birthday,
                             Model model,
                             Authentication authentication){
@@ -122,6 +129,8 @@ public class WorkersController {
 
         UserDetails principals = (UserDetails) authentication.getPrincipal();
         User user = userDAO.getUserByLogin(principals.getUsername());
+        Post post = postDAO.getPostById(post_id);
+        Subject subject = subjectDAO.getSubjectById(subject_id);
 
         worker.setFirst_name(first_name);
         worker.setLast_name(last_name);
@@ -129,7 +138,7 @@ public class WorkersController {
         worker.setPost(post);
         worker.setBirthday(birthday);
         worker.setUser(user);
-        worker.setSubject(subjectDAO.getSubjectById(6));
+        worker.setSubject(subject);
 
         workerDAO.addNewWorker(worker);
 
