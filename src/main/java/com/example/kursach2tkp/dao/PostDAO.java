@@ -32,7 +32,7 @@ public class PostDAO {
     }
 
     public Post getPostByName(String name){
-        return (Post) sessionFactory.getCurrentSession().createQuery("from Post where post_name='" + (String) name.toLowerCase(Locale.ROOT) + "'");
+        return (Post) sessionFactory.getCurrentSession().createQuery("from Post where post_name='" + (String) name.toLowerCase(Locale.ROOT) + "'").uniqueResult();
     }
 
     public void addPost(Post post){

@@ -32,7 +32,7 @@ public class SubjectDAO {
     }
 
     public Subject getSubjectByName(String name){
-        return (Subject) sessionFactory.getCurrentSession().createQuery("from Subject where name='" + (String) name.toLowerCase(Locale.ROOT) + "'");
+        return (Subject) sessionFactory.getCurrentSession().createQuery("from Subject where name='" + (String) name.toLowerCase(Locale.ROOT) + "'").uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
