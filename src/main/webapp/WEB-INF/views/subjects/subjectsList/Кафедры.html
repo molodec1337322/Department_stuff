@@ -110,10 +110,23 @@
                           <input type="text" placeholder="Введите название новой кафедры" id="name-85db" name="newSubjectName" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                       </div>
                       <div class="u-align-center u-form-group u-form-submit">
-                          <input type="submit" value="Создать новую кафедру" class="u-btn u-btn-submit u-button-style">
+                          <input type="submit" value="Добавить новую кафедру" class="u-btn u-btn-submit u-button-style">
                       </div>
                   </form>
               </div>
+                <div class="u-container-layout u-container-layout-3" th:if="${is_auth}">
+                    <form action="/subjects/posts/new" method="POST" class="" source="custom" name="form" style="padding: 10px;">
+                        <input type="hidden" id="siteId1" name="siteId" value="118690144">
+                        <input type="hidden" id="pageId1" name="pageId" value="239119998">
+                        <div class="u-form-group u-form-name">
+                            <label for="name-85db" class="u-form-control-hidden u-label"></label>
+                            <input type="text" placeholder="Введите название новой должности" id="name-851db" name="newPostName" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                        </div>
+                        <div class="u-align-center u-form-group u-form-submit">
+                            <input type="submit" value="Добавить новую должность" class="u-btn u-btn-submit u-button-style">
+                        </div>
+                    </form>
+                </div>
             </div>
           </div>
         </div>

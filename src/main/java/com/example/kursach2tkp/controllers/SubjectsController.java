@@ -1,8 +1,10 @@
 package com.example.kursach2tkp.controllers;
 
+import com.example.kursach2tkp.dao.PostDAO;
 import com.example.kursach2tkp.dao.SubjectDAO;
 import com.example.kursach2tkp.dao.UserDAO;
 import com.example.kursach2tkp.dao.WorkerDAO;
+import com.example.kursach2tkp.models.Post;
 import com.example.kursach2tkp.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,10 +24,13 @@ public class SubjectsController {
 
     private SubjectDAO subjectDAO;
 
+    private PostDAO postDAO;
+
     @Autowired
-    public SubjectsController(UserDAO userDAO, SubjectDAO subjectDAO){
+    public SubjectsController(UserDAO userDAO, SubjectDAO subjectDAO, PostDAO postDAO){
         this.userDAO = userDAO;
         this.subjectDAO = subjectDAO;
+        this.postDAO = postDAO;
     }
 
     @GetMapping()
@@ -52,6 +57,15 @@ public class SubjectsController {
         Subject subject = new Subject();
         subject.setName(newSubject);
         subjectDAO.createSubject(subject);
+
+        return "redirect:/subjects";
+    }
+
+    @PostMapping("/posts/new")
+    public String addNewPost(@RequestParam(value = "newPostName") String newPost){
+        Post post = new Post();
+        post.setPost_name(newPost);
+        postDAO.addPost(post);
 
         return "redirect:/subjects";
     }

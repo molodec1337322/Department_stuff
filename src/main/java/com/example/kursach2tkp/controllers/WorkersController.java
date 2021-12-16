@@ -109,6 +109,7 @@ public class WorkersController {
         }
 
         model.addAttribute("subjectsList", subjectDAO.getAllSubjectsList());
+        model.addAttribute("postsList", postDAO.getPostsList());
         model.addAttribute("is_auth", isAuthenticated);
         model.addAttribute("logged_user", username);
 

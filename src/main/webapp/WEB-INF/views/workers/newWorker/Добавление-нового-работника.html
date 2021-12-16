@@ -105,17 +105,19 @@
               <label for="text-f921" class="u-form-control-hidden u-label"></label>
               <input type="date" placeholder="Дата рождения" id="text-f921" name="birthday" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
-            <div style="margin-top: 10px;" class="u-form-group u-form-group-5">
-              <label for="text-6a90" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Должность" id="text-6a90" name="post" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-            </div>
+              <div style="margin-top: 10px;" class="u-form-group u-form-select u-form-group-6">
+                  <label for="text-6a90" class="u-form-control-hidden u-label"></label>
+                  <div class="u-form-select-wrapper">
+                      <select id="text-6a90" name="post" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          <option th:each="post : ${postsList}" th:value="${post.getId()}" th:text="${post.getPost_name()}"></option>
+                      </select>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                  </div>
             <div style="margin-top: 10px;" class="u-form-group u-form-select u-form-group-6">
               <label for="select-154e" class="u-form-control-hidden u-label"></label>
               <div class="u-form-select-wrapper">
-                <select id="select-154e" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                  <option value="Item 1">Item 1</option>
-                  <option value="Item 2">Item 2</option>
-                  <option value="Item 3">Item 3</option>
+                <select  id="select-154e" name="subject" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                  <option th:each="subject : ${subjectsList}" th:value="${subject.getId()}" th:text="${subject.getName()}"></option>
                 </select>
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
               </div>
