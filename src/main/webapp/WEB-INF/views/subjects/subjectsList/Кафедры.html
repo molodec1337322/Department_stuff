@@ -91,8 +91,9 @@
             <div class="u-container-style u-layout-cell u-size-45 u-layout-cell-1">
               <div class="u-container-layout u-valign-top u-container-layout-1">
                   <div th:each="subject : ${subjects}">
-                    <div style="margin-top: 10px" class="u-container-style u-grey-15 u-group u-shape-rectangle u-group-1">
+                    <div style="margin-top: 10px; padding-bottom: 10px;" class="u-container-style u-grey-15 u-group u-shape-rectangle u-group-1">
                       <div class="u-container-layout u-container-layout-2">
+                          <a th:href="${'/subjects/delete/' + subject.getId()}" class="u-btn u-button-style u-btn-1" th:if="${is_admin}"}> Удалить </a>
                         <a th:href="${'/workers/subject/' + subject.getId()}" class="u-border-none u-btn u-button-style u-palette-1-base u-btn-1">Подробнее</a>
                         <p class="u-text u-text-1" th:text="${subject.getName()}"></p>
                       </div>
@@ -101,7 +102,7 @@
               </div>
             </div>
             <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-3" th:if="${is_auth}">
+              <div class="u-container-layout u-container-layout-3" th:if="${is_admin}">
                   <form action="/subjects/new" method="POST" class="" source="custom" name="form" style="padding: 10px;">
                       <input type="hidden" id="siteId" name="siteId" value="118690144">
                       <input type="hidden" id="pageId" name="pageId" value="239119998">
@@ -114,7 +115,7 @@
                       </div>
                   </form>
               </div>
-                <div class="u-container-layout u-container-layout-3" th:if="${is_auth}">
+                <div class="u-container-layout u-container-layout-3" th:if="${is_admin}">
                     <form action="/subjects/posts/new" method="POST" class="" source="custom" name="form" style="padding: 10px;">
                         <input type="hidden" id="siteId1" name="siteId" value="118690144">
                         <input type="hidden" id="pageId1" name="pageId" value="239119998">

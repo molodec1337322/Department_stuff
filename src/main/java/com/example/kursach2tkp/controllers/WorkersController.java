@@ -46,9 +46,9 @@ public class WorkersController {
         String username = null;
 
         if(authentication != null){
-            System.out.println((UserDetails)authentication.getPrincipal());
             isAuthenticated = authentication.isAuthenticated();
             username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            isAdmin = isUserAdmin(authentication);
         }
 
         model.addAttribute("workers", workerDAO.getAllWorkersList());
@@ -78,10 +78,9 @@ public class WorkersController {
 
 
         if(authentication != null){
-            System.out.println((UserDetails)authentication.getPrincipal());
             isAuthenticated = authentication.isAuthenticated();
             username = ((UserDetails) authentication.getPrincipal()).getUsername();
-
+            isAdmin = isUserAdmin(authentication);
         }
 
         //int subjectID = subjectDAO.getSubjectByName(subject).getId();
@@ -103,7 +102,6 @@ public class WorkersController {
         String username = null;
 
         if(authentication != null){
-            System.out.println((UserDetails)authentication.getPrincipal());
             isAuthenticated = authentication.isAuthenticated();
             username = ((UserDetails) authentication.getPrincipal()).getUsername();
         }
@@ -148,6 +146,56 @@ public class WorkersController {
         return "redirect:/workers/all";
     }
 
+    @GetMapping(value = "/edit")
+    public String EditWorker(@PathVariable("id") int id,
+                             Model model,
+                             Authentication authentication){
+
+        boolean isAuthenticated = false;
+        String username = null;
+
+        if(authentication != null){
+            isAuthenticated = authentication.isAuthenticated();
+            username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        }
+
+        model.addAttribute("worker", workerDAO.getWorkerByID(id));
+        model.addAttribute("subjectsList", subjectDAO.getAllSubjectsList());
+        model.addAttribute("postsList", postDAO.getPostsList());
+        model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("logged_user", username);
+
+        return "workers/newWorker/Редактирование-работника";
+    }
+
+    @PutMapping(value = "/edit")
+    public String confirmEditWorker(@PathVariable("id") int id,
+                                    @RequestParam("first_name") String first_name,
+                                    @RequestParam("last_name") String last_name,
+                                    @RequestParam("patronym") String patronym,
+                                    @RequestParam("post") int post_id,
+                                    @RequestParam("subject") int subject_id,
+                                    @RequestParam("birthday") String birthday,
+                             Model model,
+                             Authentication authentication){
+
+        boolean isAuthenticated = false;
+        String username = null;
+
+        if(authentication != null){
+            isAuthenticated = authentication.isAuthenticated();
+            username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        }
+
+        model.addAttribute("worker", workerDAO.getWorkerByID(id));
+        model.addAttribute("subjectsList", subjectDAO.getAllSubjectsList());
+        model.addAttribute("postsList", postDAO.getPostsList());
+        model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("logged_user", username);
+
+        return "redirect:/workers/all";
+    }
+
     public String deleteWorker(@PathVariable("id") int id,
                                Model model,
                                Authentication authentication){
@@ -157,4 +205,7 @@ public class WorkersController {
         return "redirect:/workers/all";
     }
 
+    boolean isUserAdmin(Authentication authentication){
+        return authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+    }
 }

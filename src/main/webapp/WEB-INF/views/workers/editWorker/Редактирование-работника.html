@@ -6,9 +6,9 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Работники кафедры</title>
+    <title>Добавление нового работника</title>
     <link rel="stylesheet" href="../resources/css/nicepage.css" th:href="@{/resources/css/nicepage.css}" media="screen">
-<link rel="stylesheet" href="../resources/css/Работники-кафедры.css" th:href="@{/resources/css/Работники-кафедры.css}"  media="screen">
+<link rel="stylesheet" href="../resources/css/Добавление-нового-работника.css" th:href="@{/resources/css/Добавление-нового-работника.css}" media="screen">
       <script class="u-script" type="text/javascript" th:src="@{/resources/js/jquery.js}" defer=""></script>
       <script class="u-script" type="text/javascript" th:src="@{/resources/js/nicepage.js}" defer=""></script>
     <meta name="generator" content="Nicepage 4.1.0, nicepage.com">
@@ -21,7 +21,7 @@
 		"name": ""
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Работники кафедры">
+    <meta property="og:title" content="Добавление нового работника">
     <meta property="og:type" content="website">
   </head>
   <body class="u-body"><header class="u-clearfix u-grey-80 u-header u-header" id="sec-0ecb"><div class="u-clearfix u-sheet u-sheet-1">
@@ -81,32 +81,52 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-        <h3 class="u-text u-text-default u-text-1">Работники кафедры</h3>
+        <h3 class="u-text u-text-default u-text-1" th:text="${worker.getFirst_name() + ' ' + worker.getLast_name() + ' ' + worker.getPatronym()}">Изменение данных работника</h3>
       </div></header>
-    <section class="u-clearfix u-section-1" id="sec-7adf">
-      <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div class="u-container-style u-layout-cell u-size-45 u-layout-cell-1">
-              <div class="u-container-layout u-valign-top u-container-layout-1">
-                  <div th:each="worker : ${workers}">
-                    <div style="margin-top: 10px; padding-bottom: 10px;" class="u-container-style u-grey-15 u-group u-group-1">
-                      <div class="u-container-layout u-container-layout-2">
-                          <a th:href="${'/workers/delete/' + worker.getId()}" class="u-btn u-button-style u-btn-1" th:if="${is_admin}"}> Удалить </a>
-                          <a th:href="${'/workers/edit/' + worker.getId()}" class="u-btn u-button-style u-btn-1" th:if="${is_admin}"}>Изменить </a>
-                        <a th:href="${'/workers/info/' + worker.getId()}" class="u-btn u-button-style u-btn-1">Подробнее</a>
-                        <p class="u-text u-text-1" th:text="${worker.getFirst_name() + ' ' + worker.getLast_name() + ' ' + worker.getPatronym() + ' ' + worker.getPost().getPost_name() + ' ' + worker.getSubject().getName()}"></p>
-                      </div>
-                    </div>
+    <section class="u-clearfix u-section-1" id="sec-faf5">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-form u-form-1">
+          <form action="/workers/new" method="POST" class="" source="custom" name="form" style="padding: 10px;">
+            <input type="hidden" id="siteId" name="siteId" value="118690144">
+            <input type="hidden" id="pageId" name="pageId" value="1446601463">
+            <div class="u-form-group u-form-name">
+              <label for="name-3de0" class="u-form-control-hidden u-label"></label>
+              <input type="text" placeholder="Имя " id="name-3de0" name="first_name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" th:value="${worker.getFirst_name()}">
+            </div>
+            <div style="margin-top: 10px;" class="u-form-group u-form-group">
+              <label for="email-3de0" class="u-form-control-hidden u-label"></label>
+              <input type="text" placeholder="Фамилия" id="email-3de0" name="last_name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+            </div>
+            <div style="margin-top: 10px;" class="u-form-group u-form-group-3">
+              <label for="text-85ef" class="u-form-control-hidden u-label"></label>
+              <input type="text" placeholder="Отчество" id="text-85ef" name="patronym" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+            </div>
+            <div style="margin-top: 10px;" class="u-form-group u-form-group-4">
+              <label for="text-f921" class="u-form-control-hidden u-label"></label>
+              <input type="date" placeholder="Дата рождения" id="text-f921" name="birthday" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+            </div>
+              <div style="margin-top: 10px;" class="u-form-group u-form-select u-form-group-6">
+                  <label for="text-6a90" class="u-form-control-hidden u-label"></label>
+                  <div class="u-form-select-wrapper">
+                      <select id="text-6a90" name="post" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          <option th:each="post : ${postsList}" th:value="${post.getId()}" th:text="${post.getPost_name()}"></option>
+                      </select>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
                   </div>
+            <div style="margin-top: 10px;" class="u-form-group u-form-select u-form-group-6">
+              <label for="select-154e" class="u-form-control-hidden u-label"></label>
+              <div class="u-form-select-wrapper">
+                <select  id="select-154e" name="subject" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                  <option th:each="subject : ${subjectsList}" th:value="${subject.getId()}" th:text="${subject.getName()}"></option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
               </div>
             </div>
-            <div class="u-container-style u-layout-cell u-size-15 u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-3" th:if="${is_admin}">
-                <a href="/workers/new" class="u-btn u-button-style u-btn-2">Добавить нового работка в кафедру</a>
-              </div>
+            <div class="u-align-left u-form-group u-form-submit">
+              <a href="#" class="u-btn u-btn-submit u-button-style">Изменить</a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>

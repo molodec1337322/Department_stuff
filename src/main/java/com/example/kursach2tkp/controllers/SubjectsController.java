@@ -38,14 +38,17 @@ public class SubjectsController {
                                  Authentication authentication){
 
         boolean isAuthenticated = false;
+        boolean isAdmin = false;
         String username = null;
 
         if(authentication != null){
             isAuthenticated = authentication.isAuthenticated();
             username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            isAdmin = isUserAdmin(authentication);
         }
 
         model.addAttribute("is_auth", isAuthenticated);
+        model.addAttribute("is_admin", isAdmin);
         model.addAttribute("logged_user", username);
         model.addAttribute("subjects", subjectDAO.getAllSubjectsList());
 
@@ -70,4 +73,7 @@ public class SubjectsController {
         return "redirect:/subjects";
     }
 
+    boolean isUserAdmin(Authentication authentication){
+        return authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+    }
 }
