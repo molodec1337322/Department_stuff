@@ -195,6 +195,7 @@ public class WorkersController {
         return "redirect:/workers/all";
     }
 
+    @GetMapping("/delete/{id}")
     public String deleteWorker(@PathVariable("id") int id,
                                Model model,
                                Authentication authentication){

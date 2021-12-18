@@ -38,6 +38,10 @@ public class WorkerDAO {
         sessionFactory.getCurrentSession().update(worker);
     }
 
+    public void deleteWorker(Worker worker){
+        sessionFactory.getCurrentSession().delete(worker);
+    }
+
     public Worker getWorkerByID(int id){
         return  sessionFactory.getCurrentSession().get(Worker.class, id);
     }

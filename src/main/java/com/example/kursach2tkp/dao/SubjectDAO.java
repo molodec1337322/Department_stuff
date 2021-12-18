@@ -35,6 +35,10 @@ public class SubjectDAO {
         return (Subject) sessionFactory.getCurrentSession().createQuery("from Subject where name='" + (String) name.toLowerCase(Locale.ROOT) + "'").uniqueResult();
     }
 
+    public void deleteSubjectById(int id){
+        sessionFactory.getCurrentSession().delete(getSubjectById(id));
+    }
+
     @SuppressWarnings("unchecked")
     public List<Subject> getAllSubjectsList(){
         return sessionFactory.getCurrentSession().createQuery("from Subject").list();
