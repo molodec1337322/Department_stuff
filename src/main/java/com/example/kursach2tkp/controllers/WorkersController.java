@@ -190,6 +190,8 @@ public class WorkersController {
         worker.setSubject(subjectDAO.getSubjectById(subject_id));
         worker.setBirthday(birthday);
 
+        workerDAO.updateWorker(worker);
+
         return "redirect:/workers/all";
     }
 

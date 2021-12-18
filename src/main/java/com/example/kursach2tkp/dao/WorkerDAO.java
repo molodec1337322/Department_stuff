@@ -34,6 +34,10 @@ public class WorkerDAO {
         sessionFactory.getCurrentSession().persist(worker);
     }
 
+    public void updateWorker(Worker worker){
+        sessionFactory.getCurrentSession().update(worker);
+    }
+
     public Worker getWorkerByID(int id){
         return  sessionFactory.getCurrentSession().get(Worker.class, id);
     }
