@@ -146,8 +146,8 @@ public class WorkersController {
         return "redirect:/workers/all";
     }
 
-    @GetMapping(value = "/edit")
-    public String EditWorker(@PathVariable("id") int id,
+    @GetMapping(value = "/edit/{id}")
+    public String editWorker(@PathVariable("id") int id,
                              Model model,
                              Authentication authentication){
 
@@ -165,10 +165,10 @@ public class WorkersController {
         model.addAttribute("is_auth", isAuthenticated);
         model.addAttribute("logged_user", username);
 
-        return "workers/newWorker/Редактирование-работника";
+        return "workers/editWorker/Редактирование-работника";
     }
 
-    @PutMapping(value = "/edit")
+    @PostMapping(value = "/edit/{id}")
     public String confirmEditWorker(@PathVariable("id") int id,
                                     @RequestParam("first_name") String first_name,
                                     @RequestParam("last_name") String last_name,
@@ -182,16 +182,13 @@ public class WorkersController {
         boolean isAuthenticated = false;
         String username = null;
 
-        if(authentication != null){
-            isAuthenticated = authentication.isAuthenticated();
-            username = ((UserDetails) authentication.getPrincipal()).getUsername();
-        }
-
-        model.addAttribute("worker", workerDAO.getWorkerByID(id));
-        model.addAttribute("subjectsList", subjectDAO.getAllSubjectsList());
-        model.addAttribute("postsList", postDAO.getPostsList());
-        model.addAttribute("is_auth", isAuthenticated);
-        model.addAttribute("logged_user", username);
+        Worker worker = workerDAO.getWorkerByID(id);
+        worker.setFirst_name(first_name);
+        worker.setLast_name(last_name);
+        worker.setPatronym(patronym);
+        worker.setPost(postDAO.getPostById(post_id));
+        worker.setSubject(subjectDAO.getSubjectById(subject_id));
+        worker.setBirthday(birthday);
 
         return "redirect:/workers/all";
     }

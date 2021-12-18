@@ -86,7 +86,7 @@
     <section class="u-clearfix u-section-1" id="sec-faf5">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-form-1">
-          <form action="/workers/new" method="POST" class="" source="custom" name="form" style="padding: 10px;">
+          <form th:action="${'/workers/edit/' + worker.getId()}" method="POST" class="" source="custom" name="form" style="padding: 10px;">
             <input type="hidden" id="siteId" name="siteId" value="118690144">
             <input type="hidden" id="pageId" name="pageId" value="1446601463">
             <div class="u-form-group u-form-name">
@@ -95,15 +95,15 @@
             </div>
             <div style="margin-top: 10px;" class="u-form-group u-form-group">
               <label for="email-3de0" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Фамилия" id="email-3de0" name="last_name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+              <input type="text" placeholder="Фамилия" id="email-3de0" name="last_name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" th:value="${worker.getLast_name()}">
             </div>
             <div style="margin-top: 10px;" class="u-form-group u-form-group-3">
               <label for="text-85ef" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Отчество" id="text-85ef" name="patronym" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+              <input type="text" placeholder="Отчество" id="text-85ef" name="patronym" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" th:value="${worker.getPatronym()}">
             </div>
             <div style="margin-top: 10px;" class="u-form-group u-form-group-4">
               <label for="text-f921" class="u-form-control-hidden u-label"></label>
-              <input type="date" placeholder="Дата рождения" id="text-f921" name="birthday" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+              <input type="date" placeholder="Дата рождения" id="text-f921" name="birthday" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" th:value="${worker.getBirthday()}">
             </div>
               <div style="margin-top: 10px;" class="u-form-group u-form-select u-form-group-6">
                   <label for="text-6a90" class="u-form-control-hidden u-label"></label>
